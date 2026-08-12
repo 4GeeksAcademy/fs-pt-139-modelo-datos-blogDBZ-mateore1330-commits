@@ -1,7 +1,9 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "workbench.editorAssociations": {   
-        "*.md": "vscode.markdown.preview.editor"
-    }
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "workbench.editorAssociations": {
+    "*.md": "vscode.markdown.preview.editor"
+  },
+  "python.defaultInterpreterPath": "/Users/workspace/.local/share/virtualenvs/fs-pt-139-modelo-datos-blogDBZ-mateore1330-TP7_cIRu/bin/python",
+  "python-envs.defaultEnvManager": "ms-python.python:pipenv"
 }
