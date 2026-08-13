@@ -5,7 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 db = SQLAlchemy()
 
 class User(db.Model):
-    user_id: Mapped[int] = mapped_column(primary_key=True, unique=True, nullable=False)
+    user_id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
@@ -22,14 +22,14 @@ class User(db.Model):
         }
 
 class Character(db.Model):
-    character_id: Mapped[int] = mapped_column(primary_key=True, unique=True, nullable=False)
+    character_id: Mapped[int] = mapped_column(primary_key=True)
     url_image: Mapped[str] = mapped_column(nullable=False)
     name: Mapped[str] = mapped_column(nullable=False)
     race: Mapped[str] = mapped_column(nullable=False)
     gender: Mapped[str] = mapped_column(nullable=False)
     ki: Mapped[int] = mapped_column(nullable=True)
     max_ki: Mapped[int] = mapped_column(nullable=True)
-    description: Mapped[str] = mapped_column(nullable=False)
+    description: Mapped[str] = mapped_column(nullable=True)
     affiliation: Mapped[str] = mapped_column(nullable=True)
     origin_planet_id: Mapped[int] = mapped_column(ForeignKey('planet.planet_id'), nullable=True)
     favorited_by: Mapped[list["User"]] = relationship("User", secondary="favorite_characters", back_populates="favorite_characters")
@@ -58,11 +58,11 @@ class Character(db.Model):
         }
 
 class Planet(db.Model):
-    planet_id: Mapped[int] = mapped_column(primary_key=True, unique=True, nullable=False)
+    planet_id: Mapped[int] = mapped_column(primary_key=True)
     url_image: Mapped[str] = mapped_column(nullable=False)
     name: Mapped[str] = mapped_column(nullable=False)
     is_destroyed: Mapped[bool] = mapped_column(nullable=False)
-    description: Mapped[str] = mapped_column(nullable=False)
+    description: Mapped[str] = mapped_column(nullable=True)
     favorited_by: Mapped[list["User"]] = relationship("User", secondary="favorite_planets", back_populates="favorite_planets")
     characters: Mapped[list["Character"]] = relationship("Character", back_populates="planet")
 
